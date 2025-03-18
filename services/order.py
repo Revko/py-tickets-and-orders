@@ -6,7 +6,7 @@ from db.models import User, Order, Ticket
 
 def create_order(
         tickets: list[dict],
-        username: User,
+        username: str,
         date: str = None
 ) -> Order:
     if date:
@@ -29,7 +29,7 @@ def create_order(
     return order
 
 
-def get_orders(username: str = None) -> QuerySet:
+def get_orders(username: str = None) -> QuerySet[Order]:
     orders = Order.objects.all()
     if username:
         orders = orders.filter(user__username=username)
